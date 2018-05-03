@@ -4,4 +4,14 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>ItunesSearch</servlet-name>
+  	<display-name>ItunesSearch</display-name>
+  	<description></description>
+  	<servlet-class>com.booksApp.servlet.ItunesSearch</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ItunesSearch</servlet-name>
+  	<url-pattern>/ItunesSearch</url-pattern>
+  </servlet-mapping>
 </web-app>
