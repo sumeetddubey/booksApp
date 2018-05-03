@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Books App</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/style.css">
 
 </head>
 <body>
@@ -21,10 +21,6 @@
 </form>
 
 <div class="mt-1" id="results"></div>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:if test="${bookResults.resultCount} == 0">
-<p>an item</p>
- </c:if>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
@@ -46,7 +42,7 @@
         	  $('#results').empty()
         	  console.log(res);
         	  if(res.resultCount>0){
-        		  res.results.forEach(function(result, index){
+        		  /* res.results.forEach(function(result, index){
         			  var card = document.createElement('div');
         			  card.setAttribute('class', 'card mt-4'); 
         			  var image = document.createElement('img');
@@ -69,7 +65,21 @@
         			  card.appendChild(cardHeader);
         			  card.appendChild(cardBody);
         			  document.getElementById('results').appendChild(card);
+        		  }) */
+        		  var html="";
+        		  res.results.forEach(function(result, index){
+        			  html+="<div class='card mt-4'>";
+        			  html+="<div class='card-header'>";
+        			  html+="<img class='card-img-top book-artwork' src=" +result.artworkUrl100 +">";
+        			  html+="<a href=''>" +"<h5 class='card-title'>" +result.trackName +"</h5></a>"
+        			  html+="<div>Written by " +result.artistName +"</div>";
+        			  html+="<div>Price: " +result.formattedPrice +"</div>";
+        			  html+="</div>";
+        			  html+="<div class='card-body mt-2'>";
+        			  html+="<p class='card-text'>" +result.description +"</p>";
+        			  html+="</div> </div>"
         		  })
+        		  $('#results').html(html);
         		  }
           }
       })
