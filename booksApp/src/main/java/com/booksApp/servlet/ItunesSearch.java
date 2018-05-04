@@ -43,15 +43,18 @@ public class ItunesSearch extends HttpServlet {
 		String term = request.getParameter("text");
 		String media = "ebook";
 		String country  = "US";
+//		query string for itunes api
 		String urlString="https://itunes.apple.com/search?term="+term+"&media="+media+"&country="+country;
 		urlString=urlString.replaceAll("\\s+", "+");
 		BookResults result;
+//		maps results from api to java objects
 		ObjectMapper objectMapper = new ObjectMapper();
 //		check if entry exists in cache
 		if(cache.inCache(urlString)) {
 			result=cache.getFromCache(urlString);
 		}
 		else {
+//			get results from itunes api
 			URL url = new URL(urlString);
 			HttpURLConnection conn = (HttpURLConnection)url.openConnection();  
 	        conn.setRequestMethod("GET");
@@ -60,10 +63,11 @@ public class ItunesSearch extends HttpServlet {
 	            throw new RuntimeException("HTTP GET Request Failed with Error code : "
 	                          + conn.getResponseCode());
 	        }
-	        
+//	        add new results to cache
 	        result = objectMapper.readValue(conn.getInputStream(), BookResults.class);
 	        cache.addToCache(urlString, result);
 		}
+//		send response as json
 		String jsonResponse = objectMapper.writeValueAsString(result);
         response.setContentType("application/json");
         response.getWriter().write(jsonResponse);

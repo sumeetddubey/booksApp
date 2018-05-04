@@ -5,7 +5,12 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+// annotation for storing only relevant details from itunes api
 @JsonIgnoreProperties(ignoreUnknown=true)
+/**
+ * @author sumeetdubey
+ * Class for storing each book returned from the itunes api
+ */
 public class Book {
 	public Book() {
 	}
@@ -60,6 +65,7 @@ public class Book {
 		this.trackViewUrl = trackViewUrl;
 	}
 	
+//	Jackson json parser annotations
 	@JsonProperty("trackName")
 	private String name;
 	@JsonProperty("artistName")

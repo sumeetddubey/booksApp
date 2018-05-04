@@ -2,6 +2,11 @@ package com.booksApp.utilities;
 
 import com.booksApp.entities.BookResults;
 
+
+/**
+ * @author sumeetdubey
+ * Class for a cache entry having attributes for storing a query url and its search results
+ */
 public class CacheEntry {
 	public CacheEntry(String queryString, BookResults result) {
 		this.queryString = queryString;
