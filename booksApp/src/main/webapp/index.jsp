@@ -14,7 +14,7 @@
 <div class="container">
 <form id="searchForm">
   <div class="form-group">
-    <label for="searchInput">Search Text</label>
+    <label for="searchInput">Search iTunes Books</label>
     <input type="text" class="form-control" id="searchInput">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
@@ -26,64 +26,6 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-<script type='text/javascript'>
-    /* attach a submit handler to the form */
-    $("#searchForm").submit(function(event) {
-
-      /* stop form from submitting normally */
-      event.preventDefault();
-
-      $.ajax({
-          type: 'GET',
-          url: '/ItunesSearch',
-          data: {text: $('#searchInput').val()},
-          success: function(res){
-        	  $('#results').empty()
-        	  console.log(res);
-        	  if(res.resultCount>0){
-        		  /* res.results.forEach(function(result, index){
-        			  var card = document.createElement('div');
-        			  card.setAttribute('class', 'card mt-4'); 
-        			  var image = document.createElement('img');
-        			  image.setAttribute('src', result.artworkUrl100);
-        			  image.setAttribute('class', 'card-img-top book-artwork');
-        			  var cardBody = document.createElement('div');
-        			  cardBody.setAttribute('class', 'card-body');
-        			  var cardTitle = document.createElement('h5');
-        			  cardTitle.setAttribute('class', 'card-title');
-        			  cardTitle.innerHTML = result.trackName;
-        			  var cardText = document.createElement('p');
-        			  cardText.setAttribute('class', 'card-text');
-        			  cardText.innerHTML=result.description;
-        			  var cardHeader = document.createElement('div');
-        			  cardHeader.setAttribute('class', 'card-header');
-        			  
-        			  cardHeader.appendChild(image);
-        			  cardHeader.appendChild(cardTitle);
-        			  cardBody.appendChild(cardText);
-        			  card.appendChild(cardHeader);
-        			  card.appendChild(cardBody);
-        			  document.getElementById('results').appendChild(card);
-        		  }) */
-        		  var html="";
-        		  res.results.forEach(function(result, index){
-        			  html+="<div class='card mt-4'>";
-        			  html+="<div class='card-header'>";
-        			  html+="<img class='card-img-top book-artwork' src=" +result.artworkUrl100 +">";
-        			  html+="<a href=''>" +"<h5 class='card-title'>" +result.trackName +"</h5></a>"
-        			  html+="<div>Written by " +result.artistName +"</div>";
-        			  html+="<div>Price: " +result.formattedPrice +"</div>";
-        			  html+="</div>";
-        			  html+="<div class='card-body mt-2'>";
-        			  html+="<p class='card-text'>" +result.description +"</p>";
-        			  html+="</div> </div>"
-        		  })
-        		  $('#results').html(html);
-        		  }
-          }
-      })
-  	});
-</script>
+<script src="./js/search.js"></script>
 </body>
 </html>

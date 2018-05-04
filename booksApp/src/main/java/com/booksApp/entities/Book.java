@@ -53,6 +53,12 @@ public class Book {
 	public void setReleaseDate(String releaseDate) {
 		this.releaseDate = releaseDate;
 	}
+	public String getTrackViewUrl() {
+		return trackViewUrl;
+	}
+	public void setTrackviewUrl(String trackViewUrl) {
+		this.trackViewUrl = trackViewUrl;
+	}
 	
 	@JsonProperty("trackName")
 	private String name;
@@ -68,4 +74,6 @@ public class Book {
 	List<String> genres;
 	@JsonProperty("releaseDate")
 	private String releaseDate;
+	@JsonProperty("trackViewUrl")
+	private String trackViewUrl;
 }
